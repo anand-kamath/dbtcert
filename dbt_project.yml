@@ -31,4 +31,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   eth:
-    +materialized: table
+    base:
+      +materialized: ephemeral
+    staging:
+      +materialized: table
