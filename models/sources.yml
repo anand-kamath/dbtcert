@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ethereum
+    database: ETH
+    schema: ETH_SCHEMA
+    tables:
+      - name: contracts
+        IDENTIFIER: CONTRACTS
+        description: "The contracts table contains information about smart contracts deployed on the Ethereum blockchain, including
+          the contract address, creator address, creation transaction hash, and other relevant details."
+      - name: transactions
+        IDENTIFIER: TRANSACTIONS
+        description: "The transactions table contains information about each transaction in the Ethereum blockchain, including the transaction hash, sender and receiver addresses, value transferred, and other relevant details."
+      - name: token_transfers
+        IDENTIFIER: TOKEN_TRANSFERS
+        description: "The token_transfers table contains information about ERC-20 token transfers on the Ethereum blockchain, including the transaction hash, sender and receiver addresses, token contract address, and the amount of tokens transferred."
