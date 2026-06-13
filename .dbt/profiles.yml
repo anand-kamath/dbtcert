@@ -2,9 +2,9 @@ eth:
   outputs:
     ci:
       type: snowflake
-      account: psctivh-wv70952
-      user: ADMIN
-      role: ACCOUNTADMIN
+      account: "{{ env_var('DBT_SNOWFLAKE_IDENTIFIER') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
       database: ci
       private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
       schema: ci_SCHEMA
