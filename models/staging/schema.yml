@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stablecoin_activity_perday
+    config:
+      contract:
+        enabled: true
+    latest_version: 1
+    description: ""
+    columns:
+      - name: date
+        data_type: date
+        description: ""
+
+      - name: token_address
+        data_type: varchar
+        description: ""
+
+      - name: type
+        data_type: varchar
+        description: ""
+
+      - name: symbol
+        data_type: varchar
+        description: ""
+
+      - name: total_usd_value
+        data_type: float
+        description: ""
+ 
+    versions:
+      - v: 1
+      - v: 2
+        columns:
+          - include: all
+            exclude: [token_address,symbol]
+       
