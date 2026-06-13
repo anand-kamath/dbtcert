@@ -1,10 +1,10 @@
-    ci:
-      type: snowflake
-      account: psctivh-wv70952
-      user: ADMIN
-      role: ACCOUNTADMIN
-      database: ci
-      private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
-      schema: ci_SCHEMA
-      threads: 1
-      warehouse: COMPUTE_WH
+ci:
+  type: snowflake
+  account: psctivh-wv70952
+  user: ADMIN
+  role: ACCOUNTADMIN
+  database: ci
+  private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
+  schema: ci_SCHEMA
+  threads: 1
+  warehouse: COMPUTE_WH
