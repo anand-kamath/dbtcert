@@ -36,7 +36,7 @@ jobs:
           chmod 600 ~/.dbt/rsa_key.p8
 
       - name: Install dbt deps
-        run: dbt deps --profile-dir ~/.dbt
+        run: dbt deps --profiles-dir ~/.dbt
 
       - name: Run dbt debug
         run: dbt debug --target ci --profiles-dir ~/.dbt
