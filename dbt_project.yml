@@ -35,3 +35,8 @@ models:
       +materialized: ephemeral
     staging:
       +materialized: table
+seeds:
+  eth:
+    +database: SEEDS
+    +schema: STATIC
+  
