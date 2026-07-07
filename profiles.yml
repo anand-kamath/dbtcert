@@ -2,9 +2,9 @@ airstats:
   outputs:
     ci:
       type: snowflake
-      account: "{{ env_var('DBT_SNOWFLAKE_IDENTIFIER') }}"
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
+      account: OWSABVL-IP00020
+      user: dbt
+      role: TRANSFORM
       database: CI
       private_key: "{{ env_var('DBT_PRIVATE_KEY') }}"
       private_key_passphrase: q
