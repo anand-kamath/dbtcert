@@ -1,0 +1,4 @@
+runway_id,airport_ident,runway_surface
+1,'JFK','Asaphalt'
+2,'LAX',''
+3,'ODF',null

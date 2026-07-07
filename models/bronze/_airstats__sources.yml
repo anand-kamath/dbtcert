@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "This model contains the source definitions for the airstats project."
+    tables:
+      - name: airports
+        identifier: AIRPORTS
+        description: "This table contains the airports data from the airstats project."
+        config:
+          freshness: null 
+      - name: airport_comments
+        identifier: AIRPORT_COMMENTS
+        description: "This table contains the airport comments data from the airstats project."
+        config:
+          freshness:
+            warn_after: {count: 5, period: day}
+            error_after: {count: 10, period: day}
+            loaded_at_query: |
+              select max(loaded_at) from (
+              select * from {{this}}
+              where loaded_at > dateadd(day,-10, current_date())
+              )
+      - name: runways
+        identifier: RUNWAYS
+        description: "This table contains the runways data from the airstats project."
+        config:
+          freshness: null 
+    config:
+      meta:
+        owner: "Anand Kamath"
+        created_at: "2024-06-15"
+

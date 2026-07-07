@@ -1,0 +1,103 @@
+version: 2
+models:
+  - name: src_airports
+    description: "This model contains the source data for airports from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Ayansh Kamath"
+        created_at: "2024-06-13"
+    columns:
+      - name: aiport_ident
+        description: '{{ doc("airport_ident") }}'
+        data_type: string
+        constraints:
+          - type: not_null
+          - type: unique
+      - name: airport_type
+        description: "The type of the airport (e.g., small_airport, medium_airport, large_airport)."
+        data_type: string
+        data_tests:
+          - accepted_values:
+              name: accepted_values_for_airport_type
+              arguments:
+                column_name: airport_type
+                values: ["small_airport", "medium_airport", "large_airport"]
+              config:
+                where: "airport_type in ('small_airport', 'medium_airport', 'large_airport')"
+      - name: airport_name
+        description: "The name of the airport."
+        data_type: string
+      - name: airport_lat
+        description: "The latitude of the airport."
+        data_type: float
+      - name: airport_long
+        description: "The longitude of the airport."
+        data_type: float
+      - name: continent
+        description: "The continent where the airport is located."
+        data_type: string
+      - name: iso_country
+        description: "The ISO country code for the country where the airport is located."
+        data_type: string
+      - name: iso_region
+        description: "The ISO region code for the region where the airport is located."
+        data_type: string
+  - name: src_airport_comments
+    description: "This model contains the source data for airport comments from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Gayathri Anand"
+        created_at: "2024-06-13"
+    columns:
+      - name: comment_id
+        description: "The unique identifier for the comment."
+        data_type: integer
+      - name: airport_ident
+        description:  '{{ doc("airport_ident") }}'
+        data_type: string
+      - name: comment_timestamp
+        description: "The timestamp when the comment was made."
+        data_type: timestamp
+      - name: member_nickname
+        description: "The nickname of the member who made the comment."
+        data_type: string
+      - name: comment_subject
+        description: "The subject of the comment."
+        data_type: string
+      - name: comment_body
+        description: "The body of the comment."
+        data_type: string
+  - name: src_runways
+    description: "This model contains the source data for runways from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Anand Kamath"
+        created_at: "2024-06-13"
+    columns:
+      - name: runway_id
+        description: "The unique identifier for the runway."
+        data_type: integer
+      - name: airport_ident 
+        description: '{{ doc("airport_ident") }}'
+        data_type: string
+      - name: runway_length_ft
+        description: "The length of the runway in feet."
+        data_type: number
+      - name: runway_width_ft
+        description: "The width of the runway in feet."
+        data_type: number
+      - name: runway_surface
+        description: "The surface type of the runway (e.g., asphalt, concrete, grass)."
+        data_type: string
+      - name: runway_lighted
+        description: "Indicates whether the runway is lighted (1 for lighted, 0 for not lighted)."
+        data_type: integer
+      - name: runway_closed
+        description: "Indicates whether the runway is closed (1 for closed, 0 for open)."
+        data_type: integer

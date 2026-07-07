@@ -1,0 +1,127 @@
+version: 2
+models:
+  - name: int_airports
+    description: "This model contains the intermediate data for airports from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Ayansh Kamath"
+        created_at: "2024-06-13"
+    columns:
+      - name: aiport_ident
+        description: "The unique identifier for the airport."
+        data_type: string
+        data_tests:
+          - not_null:
+              name: not_null_for_aiport_ident 
+          - dbt_expectations.expect_column_to_exist:
+              name: exist_for_aiport_ident     
+      - name: airport_type
+        description: "The type of the airport (e.g., small_airport, medium_airport, large_airport)."
+        data_type: string
+      - name: airport_name
+        description: "The name of the airport."
+        data_type: string
+      - name: airport_lat
+        description: "The latitude of the airport."
+        data_type: float
+      - name: airport_long
+        description: "The longitude of the airport."
+        data_type: float
+      - name: continent
+        description: "The continent where the airport is located."
+        data_type: string
+      - name: iso_country
+        description: "The ISO country code for the country where the airport is located."
+        data_type: string
+      - name: iso_region
+        description: "The ISO region code for the region where the airport is located."
+        data_type: string
+  - name: int_runways
+    description: "This model contains the intermediate data for runways from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Gayathri Anand"
+        created_at: "2024-06-13"
+    columns:
+      - name: runway_id
+        description: "The unique identifier for the runway."
+        data_type: integer
+        data_tests:
+          - not_null:
+              name: not_null_for_runway_id
+          - unique:
+              name: unique_for_runway_id
+      - name: airport_ident
+        description: "The unique identifier for the airport associated with the runway."
+        data_type: string
+        data_tests:
+          - not_null:
+              name: not_null_for_airport_ident_
+          - relationships:
+              arguments:
+                to: ref('int_airports')
+                field: aiport_ident
+                name: runway_airport_ident_relationship
+      - name: runway_length_ft
+        description: "The length of the runway in feet."
+        data_type: integer
+      - name: runway_width_ft
+        description: "The width of the runway in feet."
+        data_type: integer
+      - name: runway_surface
+        description: "The surface type of the runway (e.g., asphalt, concrete, grass)."
+        data_type: string
+      - name: runway_lighted
+        description: "Indicates whether the runway is lighted (1 for yes, 0 for no)."
+        data_type: integer
+      - name: runway_closed
+        description: "Indicates whether the runway is closed (1 for yes, 0 for no)."
+        data_type: integer
+  - name: int_airport_comments
+    description: "This model contains the intermediate data for airport comments from the airstats project."
+    config:
+      contract:
+        enforced: true
+      meta:
+        owner: "Anand Kamath"
+        created_at: "2024-06-13"
+    columns:
+      - name: comment_id
+        description: "The unique identifier for the comment."
+        data_type: integer
+        data_tests:
+          - not_null:
+              name: not_null_for_comment_id
+          - unique:
+              name: unique_for_comment_id
+      - name: airport_ident
+        description: "The unique identifier for the airport associated with the comment."
+        data_type: string
+        data_tests:
+          - not_null:
+              name: not_null_for_airport_ident
+      - name: comment_timestamp
+        description: "The timestamp when the comment was made."
+        data_type: timestamp
+      - name: member_nickname
+        description: "The nickname of the member who made the comment."
+        data_type: string
+        data_tests:
+          - unique:
+              name: unique_for_member_nickname
+              config:
+                warn_if: ">500"
+                error_if: ">700"
+      - name: comment_subject
+        description: "The subject of the comment."
+        data_type: string
+      - name: comment_body
+        description: "The body of the comment."
+        data_type: string
+      - name: loaded_at
+        description: "The timestamp when the comment was loaded into the system."
+        data_type: timestamp_LTZ

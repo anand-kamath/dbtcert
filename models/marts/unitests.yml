@@ -1,0 +1,25 @@
+unit_tests:
+  - name: test_runway_airport_ident
+    config:
+      enabled: false
+    description: "Test to ensure that the airport_ident in the runways table exists in the airports table."
+    model: runways_per_airport
+    given:
+      - input: ref('int_airports')
+        format: dict
+        rows:
+          - { aiport_ident: 'JFK' }
+          - { aiport_ident: 'LAX' }
+          - { aiport_ident: 'ORD' }
+      - input: ref('int_runways')
+        format: csv
+        fixture: runwayinput
+    expect:
+      format: dict
+      rows:
+        - { runway_id: 1, airport_ident: 'JFK', runway_surface: 'Asphalt' }
+        - { runway_id: 2, airport_ident: 'LAX', runway_surface: 'UNKNOWN' }
+        - { runway_id: 3, airport_ident: 'ORD', runway_surface: 'UNKNOWN' }
+
+
+
