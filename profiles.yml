@@ -7,6 +7,7 @@ airstats:
       role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
       database: CI
       private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
+      private_key_passphrase: q
       schema: "{{ env_var('DBT_SCHEMA') }}"
       threads: 1
       warehouse: COMPUTE_WH

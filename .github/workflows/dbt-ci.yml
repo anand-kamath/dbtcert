@@ -19,6 +19,7 @@ jobs:
       DBT_SCHEMA: pr_${{ github.event.pull_request.number }}
 
     steps:
+      
       - name: Checkout repo
         uses: actions/checkout@v3
 
