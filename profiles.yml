@@ -5,8 +5,9 @@ airstats:
       account: "{{ env_var('DBT_SNOWFLAKE_IDENTIFIER') }}"
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
       role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
-      database: CI
-      private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
+      database: AIRSTATS
+      private_key: "{{ env_var('DBT_PRIVATE_KEY') }}"
+      private_key_passphrase: q
       schema: "{{ env_var('DBT_SCHEMA') }}"
       threads: 1
       warehouse: COMPUTE_WH

@@ -8,17 +8,17 @@ on:
 jobs:
   dbt-run:
     runs-on: ubuntu-latest
-    environment: DBT_ETH
+    environment: DBT_AIRSTATS
 
     env:
       DBT_PRIVATE_KEY: ${{ secrets.DBT_PRIVATE_KEY }}
-      DBT_PRIVATE_KEY_PATH: /home/runner/.dbt/rsa_key.p8
       DBT_SNOWFLAKE_IDENTIFIER: ${{ secrets.DBT_SNOWFLAKE_IDENTIFIER }}
       DBT_SNOWFLAKE_ROLE: ${{ secrets.DBT_SNOWFLAKE_ROLE }}
       DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}
       DBT_SCHEMA: pr_${{ github.event.pull_request.number }}
 
     steps:
+      
       - name: Checkout repo
         uses: actions/checkout@v3
 
