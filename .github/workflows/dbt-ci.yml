@@ -8,7 +8,7 @@ on:
 jobs:
   dbt-run:
     runs-on: ubuntu-latest
-    environment: DBT_ETH
+    environment: DBT_AIRSTATS
 
     env:
       DBT_PRIVATE_KEY: ${{ secrets.DBT_PRIVATE_KEY }}
@@ -43,7 +43,7 @@ jobs:
         run: dbt deps
 
       - name: Run dbt debug
-        run: dbt debug --target ci
+        run: dbt debug --target CI
 
       - name: Run dbt
-        run: dbt build --target ci
+        run: dbt build --target CI
